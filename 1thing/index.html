@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>1 Thing App</title>
+    <!-- <link rel="shortcut icon" href="assets/img/icons/favicon.png"> -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- MY OWN CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- MATERIALIZE CSS -->
+
+  </head>
+  <body>
+    <div class="container">
+
+      <div id="top">
+         <div id="time"></div>
+        <!-- Time -->
+        <h1 id="greeting"></h1>
+        <!-- Greeting -->
+      </div>
+      <!-- TOP -->
+      <div id="user-input">
+        <div class="input-field">
+          <input id="thing" type="text" name="thing">
+          <label for="thing">Say one Thing</label>
+        </div>
+        <input id="submit" type="submit" name="create" value="s" hidden="hidden">
+      </div>
+      <!-- User-Input -->
+      <div class="main">
+        <div id="show"></div>
+        <span id=delete>x</span>
+      </div>
+      <!-- Show-Input -->
+    </div>
+
+
+   <!-- js files -->
+   <script  src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/id.js"></script>
+
+   <script type="text/javascript">
+
+    $(document).ready(function(){
+
+      function updateTime() {
+        $('#time').html( moment().format('h:mm:ss') );
+        $('#greeting').html( 'Selamat ' + moment().format('a') + ', Bang Pal' );
+      }
+      setInterval(updateTime, 1000);
+      // ---------- MOMENT -----------
+
+      if (localStorage.getItem('thing') !== 'undefined' ){
+        $('#show').html(JSON.parse(localStorage.getItem('thing')));
+      }
+      check();
+      //Show Data
+
+      $(document).keyup(function(e){
+
+        switch (e.keyCode) {
+          case 13: 
+            if ( $('#thing').val().trim() !== "") {
+              localStorage.setItem('thing', JSON.stringify($('#thing').val())  );
+              $('#thing').val('');
+              $('#show').html(JSON.parse(localStorage.getItem('thing')) )
+              check();
+            }else{
+              alert('Eiiits gak boleh kosong');
+            }
+            break;
+          default:
+            // statements_def
+            break;
+        }
+
+      });
+      // ------- POST&UPDATE -----------
+
+      $('#delete').click(function(){
+         JSON.stringify(localStorage.setItem('thing', "undefined"));
+         $('#show').html('');
+         check();
+      });
+      // ------- DELETE -----------
+
+      function check() {
+        if ( $('#show').html() !== "" ) {
+              $('#delete').css('display', 'inline-block');
+            } else {
+              $('#delete').css('display', 'none');
+            }
+      }
+
+    });
+
+   
+
+   </script>
+   <!-- js files -->
+
+  </body>
+</html>

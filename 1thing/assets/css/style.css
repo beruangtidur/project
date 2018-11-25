@@ -1,0 +1,77 @@
+*{
+  padding : 0;
+  margin: 0;
+}
+
+html,body{
+  width: 100%; height: 100%;
+  font-family: 'JW_Script';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container{
+  width: 960px;
+  height: auto;
+  text-align: center;
+  color: #4e4e4e;
+}
+/* container---------------- */
+#time,.form-user,.main{
+  display: block;
+}
+
+#time{
+  font-size: 10em;
+  letter-spacing: 8px;
+  line-height: 0;
+  margin-bottom: 50px;
+}
+/* time----------------------*/
+#top{
+  margin-bottom: 60px;
+}
+.input-field {
+  width: 60%;
+  margin: 0 auto;
+}
+.input-field label{
+  font-size: 2.8em !important;
+  line-height: 0;
+}
+input#dream{
+  text-align: center;
+  font-size: 2.8em !important;
+}
+input#dream:focus {
+  outline: none;
+}
+/* input--------------------*/
+
+.main{
+  display: inline-block;
+}
+.main:hover #delete {
+  opacity: 1;
+  transition: opacity .3s ease-in;
+}
+#show{
+  font-size: 4em;
+  opacity: 1;
+  transition: opacity .3s ease-in;
+  display: inline-block;
+}
+#delete {
+  display: inline-block;
+  font-size: 2em;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #4e4e4e;
+  border-radius: 100%;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .3s ease-in;
+  margin: 25px 0 0 20px;
+  vertical-align: top;
+}
