@@ -12,38 +12,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- MATERIALIZE CSS -->
 
+    <link type="text/css" rel="stylesheet" href="assets/css/t-scroll.min.css">
   </head>
   <body>
-    <div class="container">
+    <div class="container"></div>
 
-      <div id="top">
-         <div id="time"></div>
-        <!-- Time -->
-        <h1 id="greeting"></h1>
-        <!-- Greeting -->
-      </div>
-      <!-- TOP -->
-      <div id="user-input">
-        <div class="input-field">
-          <input id="thing" type="text" name="thing">
-          <label for="thing">Say one Thing</label>
-        </div>
-        <input id="submit" type="submit" name="create" value="s" hidden="hidden">
-      </div>
-      <!-- User-Input -->
-      <div class="main">
-        <div id="show"></div>
-        <span id=delete>x</span>
-      </div>
-      <!-- Show-Input -->
-    </div>
+<!-- js files -->
 
-
-   <!-- js files -->
+    <!-- jquery js -->
    <script  src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+   
+   <!-- materialize js -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   
+   <!-- moment js -->
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/id.js"></script>
+
+   <!-- t-scroll js -->
+   <script type="text/javascript" src="http://localhost/1thing/assets/js/t-scroll.min.js"></script>
 
    <script type="text/javascript">
 
@@ -51,59 +38,130 @@
 
       function updateTime() {
         $('#time').html( moment().format('h:mm:ss') );
-        $('#greeting').html( 'Selamat ' + moment().format('a') + ', Bang Pal' );
+        $('#greeting').html( 'Selamat ' + moment().format('a') + ',&nbsp;' );
       }
+
       setInterval(updateTime, 1000);
-      // ---------- MOMENT -----------
+      // END MOMENT ========================================================
 
-      if (localStorage.getItem('thing') !== 'undefined' ){
-        $('#show').html(JSON.parse(localStorage.getItem('thing')));
-      }
-      check();
-      //Show Data
 
-      $(document).keyup(function(e){
+      let display =  (localStorage.getItem('thing')) ? 'inline-block' : 'none';
+      let thing = (localStorage.getItem('thing')) ? localStorage.getItem('thing') : "";
 
-        switch (e.keyCode) {
-          case 13: 
-            if ( $('#thing').val().trim() !== "") {
-              localStorage.setItem('thing', JSON.stringify($('#thing').val())  );
-              $('#thing').val('');
-              $('#show').html(JSON.parse(localStorage.getItem('thing')) )
-              check();
+      if (localStorage.getItem('name') !== null) {
+
+
+        $('.container').html("<div id=\"top\" ><div id=\"time\" class=\"fadeIn t-animated\" data-t-show=\"5\"></div><!-- Time --><h1 id=\"greeting\" style=\"display:inline-block;\" ></h1><h1 id=\"name\" style=\"display:inline-block;\" spellcheck=\"false\">" +localStorage.getItem('name')+"</h1><!-- Greeting --></div><!-- TOP --><div id=\"user-input\" class=\"fadeIn t-animated\" data-t-show=\"6\"><div class=\"input-field fadeIn t-animated\" data-t-show=\"2\"><input id=\"thing\" type=\"text\" name=\"thing\"><label for=\"thing\">Say one Thing</label></div></div><!-- User-Input --><div class=\"main\"><div id=\"show\">" +thing+ "</div><span id=\"delete\" style=\"display:" +display+ "\">x</span></div> <!-- Show-Input -->");
+
+          $('#thing').keypress(function(f){
+            if (f.keyCode == 13) {
+              if ( $(this).val().trim() !== "") {
+                localStorage.setItem('thing', $(this).val());
+                $('#show').html($(this).val());
+                $('#delete').css('display', 'inline-block');
+                $(this).val("");
+              }else{
+                alert("Eiits gk boleh kosong");
+                return false;
+              }
+            }
+          });
+        // ------- POST&UPDATE -----------
+
+
+      }else {
+        
+        $('.container').html('<div class="input-field fadeIn t-animated" data-t-show="3"><input id="name" type="text" name="thing"><label for="thing">Type your name</label>');
+
+        $('#name').keypress(function(e){
+          if (e.keyCode == 13) {
+            if ( $(this).val().trim() !== "") {
+              
+              localStorage.setItem('name', $(this).val());
+
+              $('.container').html("<div id=\"top\" ><div id=\"time\" class=\"fadeIn t-animated\" data-t-show=\"5\"></div><!-- Time --><h1 id=\"greeting\" style=\"display:inline-block;\" ></h1><h1 id=\"name\" style=\"display:inline-block;\" spellcheck=\"false\">" +localStorage.getItem('name')+"</h1><!-- Greeting --></div><!-- TOP --><div id=\"user-input\" class=\"fadeIn t-animated\" data-t-show=\"6\"><div class=\"input-field fadeIn t-animated\" data-t-show=\"2\"><input id=\"thing\" type=\"text\" name=\"thing\"><label for=\"thing\">Say one Thing</label></div></div><!-- User-Input --><div class=\"main\"><div id=\"show\">" +thing+ "</div><span id=\"delete\" style=\"display:" +display+ "\">x</span></div> <!-- Show-Input -->");
+
+              $('#thing').keypress(function(f){
+                if (f.keyCode == 13) {
+                  if ( $(this).val().trim() !== "") {
+
+                    localStorage.setItem('thing', $(this).val());
+                    $('#show').html($(this).val());
+                    $('#delete').css('display', 'inline-block');
+                    $(this).val("");
+                  }else{
+                    alert("Eiits gk boleh kosong");
+                    return false;
+                  }
+                }
+              });
+            // ------- POST&UPDATE -----------
+
+
+             Tu.tScroll({
+                't-element': '.fadeIn'
+              });
+
             }else{
               alert('Eiiits gak boleh kosong');
             }
-            break;
-          default:
-            // statements_def
-            break;
-        }
+          }
+        });
+      // ------- NAME -----------
 
+
+        
+
+      };//END ELSE ==============================================
+
+
+        $(document).click(function(e) {
+          if (e.target.id == 'delete') {
+           localStorage.removeItem('thing');
+           $('#show').html("");
+           $('#delete').css('display', 'none');
+          }
+        });
+        // ------- DELETE -----------
+
+ 
+        // END CRUD===================================
+
+
+        $(".container").click(function (e) {
+          let uName = $('h1#name');
+          if (e.target.id == "name") {
+            uName.attr('contentEditable', 'true');
+            uName.focus();
+
+              uName.keydown(function(e){
+                if (e.keyCode == 13) {
+                  if ( uName.html().trim() == "" || uName.html().trim("<br>") == "<br>") {
+                    e.preventDefault();
+                    uName.html(localStorage.getItem('name'));
+                    uName.attr('contentEditable', 'false');
+                    alert('eiits gk boleh kosong');
+                  }else{
+                    uName.attr('contentEditable', 'false');
+                    e.preventDefault();
+                    localStorage.setItem('name', uName.html() );
+                  }
+                }
+              });
+
+          }
+          
+        });
+        // END NAME ===================================
+
+
+      Tu.tScroll({
+        't-element': '.fadeIn'
       });
-      // ------- POST&UPDATE -----------
+      // END T-SCROLL===================================
 
-      $('#delete').click(function(){
-         JSON.stringify(localStorage.setItem('thing', "undefined"));
-         $('#show').html('');
-         check();
-      });
-      // ------- DELETE -----------
-
-      function check() {
-        if ( $('#show').html() !== "" ) {
-              $('#delete').css('display', 'inline-block');
-            } else {
-              $('#delete').css('display', 'none');
-            }
-      }
-
-    });
-
-   
-
+    })
    </script>
-   <!-- js files -->
-
+<!-- js files -->
   </body>
 </html>

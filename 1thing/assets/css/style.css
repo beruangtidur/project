@@ -1,3 +1,8 @@
+@font-face{
+  font-family: 'JW_Script';
+  src: url('http://localhost/1thing/assets/fonts/JW-Script.ttf');
+}
+
 *{
   padding : 0;
   margin: 0;
@@ -5,7 +10,7 @@
 
 html,body{
   width: 100%; height: 100%;
-  font-family: 'JW_Script';
+  font-family: 'JW_Script' !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,11 +30,21 @@ html,body{
   font-size: 10em;
   letter-spacing: 8px;
   line-height: 0;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 /* time----------------------*/
+
+#name{
+  line-height: 1 !important;
+}
+h1#name:focus{
+  outline: none !important;
+  border-bottom: 2px solid #2e2e2e;
+}
+/* name----------------------*/
+
 #top{
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 .input-field {
   width: 60%;
@@ -64,7 +79,7 @@ input#dream:focus {
 #delete {
   display: inline-block;
   font-size: 2em;
-  line-height: 1;
+  line-height: 0.95;
   width: 28px;
   height: 28px;
   border: 1px solid #4e4e4e;
