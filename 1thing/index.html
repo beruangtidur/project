@@ -51,7 +51,7 @@
       if (localStorage.getItem('name') !== null) {
 
 
-        $('.container').html("<div id=\"top\" ><div id=\"time\" class=\"fadeIn t-animated\" data-t-show=\"5\"></div><!-- Time --><h1 id=\"greeting\" style=\"display:inline-block;\" ></h1><h1 id=\"name\" style=\"display:inline-block;\" spellcheck=\"false\">" +localStorage.getItem('name')+"</h1><!-- Greeting --></div><!-- TOP --><div id=\"user-input\" class=\"fadeIn t-animated\" data-t-show=\"6\"><div class=\"input-field fadeIn t-animated\" data-t-show=\"2\"><input id=\"thing\" type=\"text\" name=\"thing\"><label for=\"thing\">Say one Thing</label></div></div><!-- User-Input --><div class=\"main\"><div id=\"show\">" +thing+ "</div><span id=\"delete\" style=\"display:" +display+ "\">x</span></div> <!-- Show-Input -->");
+        $('.container').html("<div id=\"top\" ><div id=\"time\" class=\"fadeIn t-animated\" data-t-show=\"5\"></div><!-- Time --><h1 id=\"greeting\" style=\"display:inline-block;\" ></h1><h1 id=\"name\" class=\"fadeIn t-animated\" data-t-show=\"5\"> style=\"display:inline-block;\" spellcheck=\"false\">" +localStorage.getItem('name')+"</h1><!-- Greeting --></div><!-- TOP --><div id=\"user-input\" class=\"fadeIn t-animated\" data-t-show=\"6\"><div class=\"input-field fadeIn t-animated\" data-t-show=\"2\"><input id=\"thing\" type=\"text\" name=\"thing\"><label for=\"thing\">Say one Thing</label></div></div><!-- User-Input --><div class=\"main\"><div id=\"show\">" +thing+ "</div><span id=\"delete\" style=\"display:" +display+ "\">x</span></div> <!-- Show-Input -->");
 
           $('#thing').keypress(function(f){
             if (f.keyCode == 13) {
@@ -79,7 +79,7 @@
               
               localStorage.setItem('name', $(this).val());
 
-              $('.container').html("<div id=\"top\" ><div id=\"time\" class=\"fadeIn t-animated\" data-t-show=\"5\"></div><!-- Time --><h1 id=\"greeting\" style=\"display:inline-block;\" ></h1><h1 id=\"name\" style=\"display:inline-block;\" spellcheck=\"false\">" +localStorage.getItem('name')+"</h1><!-- Greeting --></div><!-- TOP --><div id=\"user-input\" class=\"fadeIn t-animated\" data-t-show=\"6\"><div class=\"input-field fadeIn t-animated\" data-t-show=\"2\"><input id=\"thing\" type=\"text\" name=\"thing\"><label for=\"thing\">Say one Thing</label></div></div><!-- User-Input --><div class=\"main\"><div id=\"show\">" +thing+ "</div><span id=\"delete\" style=\"display:" +display+ "\">x</span></div> <!-- Show-Input -->");
+              $('.container').html("<div id=\"top\" ><div id=\"time\" class=\"fadeIn t-animated\" data-t-show=\"5\"></div><!-- Time --><h1 id=\"greeting\" style=\"display:inline-block;\" ></h1><h1 id=\"name\" class=\"fadeIn t-animated\" data-t-show=\"5\"> style=\"display:inline-block;\" spellcheck=\"false\">" +localStorage.getItem('name')+"</h1><!-- Greeting --></div><!-- TOP --><div id=\"user-input\" class=\"fadeIn t-animated\" data-t-show=\"6\"><div class=\"input-field fadeIn t-animated\" data-t-show=\"2\"><input id=\"thing\" type=\"text\" name=\"thing\"><label for=\"thing\">Say one Thing</label></div></div><!-- User-Input --><div class=\"main\"><div id=\"show\">" +thing+ "</div><span id=\"delete\" style=\"display:" +display+ "\">x</span></div> <!-- Show-Input -->");
 
               $('#thing').keypress(function(f){
                 if (f.keyCode == 13) {
