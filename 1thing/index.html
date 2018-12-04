@@ -38,7 +38,7 @@
 
       function updateTime() {
         $('#time').text( moment().format('h:mm:ss') );
-        $('#greeting').text( 'Selamat ' + moment().format('a') + ',&nbsp;' );
+        $('#greeting').html( 'Selamat ' + moment().format('a') + ',&nbsp;' );
       }
 
       setInterval(updateTime, 1000);
