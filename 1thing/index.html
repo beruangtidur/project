@@ -37,8 +37,8 @@
     $(document).ready(function(){
 
       function updateTime() {
-        $('#time').html( moment().format('h:mm:ss') );
-        $('#greeting').html( 'Selamat ' + moment().format('a') + ',&nbsp;' );
+        $('#time').text( moment().format('h:mm:ss') );
+        $('#greeting').text( 'Selamat ' + moment().format('a') + ',&nbsp;' );
       }
 
       setInterval(updateTime, 1000);
@@ -57,7 +57,7 @@
             if (f.keyCode == 13) {
               if ( $(this).val().trim() !== "") {
                 localStorage.setItem('thing', $(this).val());
-                $('#show').html($(this).val());
+                $('#show').text($(this).val());
                 $('#delete').css('display', 'inline-block');
                 $(this).val("");
               }else{
@@ -86,7 +86,7 @@
                   if ( $(this).val().trim() !== "") {
 
                     localStorage.setItem('thing', $(this).val());
-                    $('#show').html($(this).val());
+                    $('#show').text($(this).val());
                     $('#delete').css('display', 'inline-block');
                     $(this).val("");
                   }else{
@@ -118,7 +118,7 @@
         $(document).click(function(e) {
           if (e.target.id == 'delete') {
            localStorage.removeItem('thing');
-           $('#show').html("");
+           $('#show').text("");
            $('#delete').css('display', 'none');
           }
         });
@@ -136,15 +136,15 @@
 
               uName.keydown(function(e){
                 if (e.keyCode == 13) {
-                  if ( uName.html().trim() == "" || uName.html().trim("<br>") == "<br>") {
+                  if ( uName.text().trim() == "" || uName.text().trim("<br>") == "<br>") {
                     e.preventDefault();
-                    uName.html(localStorage.getItem('name'));
+                    uName.text(localStorage.getItem('name'));
                     uName.attr('contentEditable', 'false');
                     alert('eiits gk boleh kosong');
                   }else{
                     uName.attr('contentEditable', 'false');
                     e.preventDefault();
-                    localStorage.setItem('name', uName.html() );
+                    localStorage.setItem('name', uName.text() );
                   }
                 }
               });
