@@ -36,18 +36,18 @@
 	    				<!-- End SiteName -->
 
 	    				<!-- NavMenu -->
-		    			<nav id="site-nav">
-		    				<ul class="main-nav list-inline mb-0 mt-3 text-center">
-		    					<a href="index.html" class="py-2"><li class="list-inline-item position-relative  m-0 py-2 w-50 active">Home</li></a><a href="about.html" class="py-2"><li class="list-inline-item position-relative  m-0 py-2 w-50">About</li></a>
-		    				</ul>
-		    				<div class="side-nav text-center">
-			    				<span id="toggle-nav" class="p-3 d-inline-block">+</span>
-			    				<ul class="list-unstyled mb-0">
-			    					<a href="index.html" class="py-2"><li class="position-relative  m-0 py-2 active">Home</li></a><a href="about.html" class="py-2"><li class="position-relative  m-0 py-2">About</li></a>
-			    				</ul>
-		    				</div>
-		    			</nav>
-	    				<!-- End NavMenu -->
+                        <nav id="site-nav">
+                            <ul class="main-nav list-inline mb-0 mt-3 text-center">
+                                <a href="index.html" class="py-2"><li class="list-inline-item position-relative  m-0 py-2 active">Home</li></a><a href="#" class="py-2"><li class="list-inline-item position-relative  m-0 py-2">Blog</li></a><a href="#" class="py-2"><li class="list-inline-item position-relative  m-0 py-2">Portfolio</li></a><a href="about.html" class="py-2"><li class="list-inline-item position-relative  m-0 py-2">About</li></a>
+                            </ul>
+                            <div class="side-nav text-center">
+                                <span id="toggle-nav" class="p-3 d-inline-block">+</span>
+                                <ul class="list-unstyled mb-0">
+                                    <a href="index.html" class="py-2"><li class="position-relative  m-0 py-2 active">Home</li></a><a href="#" class="py-2"><li class="position-relative  m-0 py-2">Blog</li></a><a href="#" class="py-2"><li class="position-relative  m-0 py-2">Portfolio</li></a><a href="about.html" class="py-2"><li class="position-relative  m-0 py-2">About</li></a>
+                                </ul>
+                            </div>
+                        </nav>
+                        <!-- End NavMenu -->
 	    			</div>
 	    		</div>
 	    		<!-- End Header Left -->
@@ -68,13 +68,13 @@
 	    		<!-- Latest Post -->
 	    		<div class="col-12 mx-0 box-dashed latest-post fadeIn">
 	    			<div class="row  post-wrapper">
-		    			<div class="col-12 col-sm-12 col-md-6 col-lg-6 px-0">
-		    				<img class="lp-img w-100" src="assets/img/post1.jpg">
+		    			<div class="col-12 col-sm-12 col-md-6 col-lg-6 px-0 cover-wrapper">
+		    				<!-- <img class="lp-img h-100" src="assets/img/post1.jpg"> -->
 		    			</div>
 		    			<!-- cover latest post -->
 		    			<div class="col-12 col-sm-12 col-md-6 col-lg-6">
 		    				<span class="post-time">January 18, 2019</span>
-		    				<h2 class="post-title"> First Title</h2>
+		    				<h2 class="post-title"> Cara menggemukkan badan</h2>
 		    				<div class="post-excerpt text-justify">
 		    					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 		    					tempor incididunt ut labore et ...</p>
@@ -89,6 +89,9 @@
 	    		<!-- Next Post -->
     			<style type="text/css">
     			@media (max-width: 576px) {
+    				.latest-post .cover-wrapper{
+						min-height: 50vh;
+					}
     				.next-post .card{
     					width: 100% !important; 
     				}
@@ -98,6 +101,11 @@
     				}
 
 				}
+				@media (max-width: 768px) {
+					.latest-post .cover-wrapper{
+						min-height: 50vh;
+					}
+				}
     			</style>
 	    		<div class="col-12 px-0 pt-5 next-post">
 	    			<div class="box-dashed position-relative">
@@ -106,7 +114,7 @@
 		    				<div class="card">
 							  <img class="card-img-top" src="assets/img/post2.jpg" alt="avocado">
 							  <div class="card-body">
-							    <h6 class="card-text post-title"><a href="">Title 2</a></h6>
+							    <h6 class="card-text post-title"><a href="">Hal-hal yang perlu diperhatikan sebelum diet</a></h6>
 							  </div>
 							</div>
 							<a href="single.html" class="link-detail"></a>
