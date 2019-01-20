@@ -1,6 +1,13 @@
 
 $(document).ready(function() {
 
+	const mainNav 	= $('.main-nav');
+	mainNav.children().children().each(function (index, li) {
+		const divider	= 100 / mainNav.children().length;
+		$(li).css('width', divider+"%");
+	})
+	// Set Width of main Nav ==========
+
 	$('.side-nav ul').hide();
 
 	$('#toggle-nav').on('click', function() {
@@ -11,21 +18,6 @@ $(document).ready(function() {
 	})
 	// toggle mobile nav ===========
 
-	// console.log($('.next-post').children('.box-dashed'));
-	$('.next-post').children('.box-dashed').each(function(index,el) {
-		// console.log($(el).index() )
-		if ($(el).index() % 2 == 0) {
-		// 	$(el).addClass('fadeLeft');
-		console.log($(el));
-		console.log('genap');
-
-		} else {
-		console.log($(el));
-		// 	$(el).addClass('fadeRight');
-		console.log('ganjil');
-
-		}
-	});
 
 	Tu.tScroll({
 		't-element'	: '.fadeLeft'
