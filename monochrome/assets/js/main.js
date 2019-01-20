@@ -1,6 +1,6 @@
-
 $(document).ready(function() {
 
+	// Set Width of main Nav ==========
 	const mainNav 	= $('.main-nav');
 	mainNav.children().children().each(function (index, li) {
 		const divider	= 100 / mainNav.children().length;
@@ -8,6 +8,8 @@ $(document).ready(function() {
 	})
 	// Set Width of main Nav ==========
 
+
+	// toggle mobile nav ===========
 	$('.side-nav ul').hide();
 
 	$('#toggle-nav').on('click', function() {
@@ -18,6 +20,15 @@ $(document).ready(function() {
 	})
 	// toggle mobile nav ===========
 
+
+	// T-Scroll ====================
+	$('.next-post').children().each(function(index,box) {
+		if (index %2 == 0) {
+			$(box).addClass('fadeLeft');
+		} else {
+			$(box).addClass('fadeRight');
+		}
+	})
 
 	Tu.tScroll({
 		't-element'	: '.fadeLeft'
