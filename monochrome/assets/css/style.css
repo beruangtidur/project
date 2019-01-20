@@ -146,13 +146,18 @@ main{
 
 
 
-	.lates-post{
-		min-height: 30vh;
+	.latest-post .cover-wrapper{
+		background-image: url(../img/post1.jpg);
+		background-size: cover;
+		background-position: center center;
 	}
 	.lates-post > *{
 		background-color: #fefefe;
 	}
-	/* First Post ========================*/
+	.post-excerpt{
+		/*overflow: */
+	}
+	/* Latest Post ========================*/
 
 
 	.next-post{
@@ -192,6 +197,9 @@ main{
 	}
 	.card-body{
 		padding: .2rem;
+	}
+	.card-text.post-title{
+		padding: 1rem;
 	}
 	/* Next Post*/
 
