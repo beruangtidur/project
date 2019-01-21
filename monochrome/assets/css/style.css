@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Cutive+Mono');
+
 /*  1rem = 17px*/
 html,body{
 	background-color: #fefefe;
 	color: #4e4e4e;
-	font-family: "ubuntu mono"
+	font-family: 'Cutive Mono', monospace;
 }
 ::-moz-selection{
 	background: #675a55;
@@ -79,10 +81,16 @@ header{
 		font-size: 2rem;
 		font-weight: bold;
 		cursor: pointer;
+		-webkit-transition: 0.2s ease-in;
+		-o-transition: 0.2s ease-in;
 		transition: 0.2s ease-in
 	}
 	.change{
-		transform: rotate(45deg);
+		-webkit-transform: rotate(45deg);
+		    -ms-transform: rotate(45deg);
+		        transform: rotate(45deg);
+		-webkit-transition: 0.2s ease-in;
+		-o-transition: 0.2s ease-in;
 		transition: 0.2s ease-in
 	}
 
@@ -274,9 +282,5 @@ footer span{
   .box-dashed{
   	max-width: 100% !important;
   }
-
-}
-
-@media (max-width: 768px) {
 
 }
