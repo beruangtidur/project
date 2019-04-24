@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> My Portfolio Online</title>
+</head>
+<body>
+	<div class="container">
+		<h1> List </h1>
+
+		<div id="main">
+			<ul id="lists"></ul>
+		</div>
+		<footer>&lt;/beruangtidur&gt;</footer>
+	</div>
+	<style type="text/css">
+		a{color: black;font-weight: bold;}
+		.container{
+			padding: 20px;
+			display: block;
+			width: 50%;
+			margin:0 auto;
+		}
+		#lists{list-style-type: none;}
+		.item{margin-bottom: 1em;border-bottom: 1px solid black; padding: 10px;}
+		summary:focus{outline: none;}
+		footer{margin-top: 20px;text-align: right;}
+	</style>
+	<script>
+		let projectsArr = [],
+			myHTML = "" ;
+
+		function newProject(title, desc, url) {
+				this.title 	= title;
+				this.desc 	= desc;
+				this.url    = "https://beruangtidur.github.io/project/" +this.title;
+				projectsArr.push(this);
+		}
+
+		const 	oneThing 	= new newProject("1thing", "Tulis 1 hal yang menjadi fokus kamu. Terinspirasi dari extension chrome (momentum)"),
+				todo 		= new newProject("todo", "Buat list yang ingin kamu kerjakan"),
+				monochrome 	= new newProject("monochrome", "Sebuah blog template HTML5 yang simple");
+
+		for (let i = 0; i < projectsArr.length; i++) {
+			myHTML += "<li class='item'>" +
+						"<details open>" +
+							"<summary>" +projectsArr[i].title+  "</summary>" +
+							"<p>" +projectsArr[i].desc+ "</p>" +
+							"<a href='" +projectsArr[i].url+ "' target='_blank'>[LINK]</a>" +
+						"</details>" +
+					  "</li>"
+					  
+		}
+		document.getElementById("lists").innerHTML = myHTML;
+
+
+	</script>
+</body>
+</html>
