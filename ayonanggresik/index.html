@@ -98,7 +98,8 @@
         </style>
         <footer>
             <span>digawe nang <u><b>gresik</b></u> nganggo ❤️ </span>
-            <a href="https://forms.gle/XiMxH1KS9md68AXr9" target="_blank" class="btn"> Tambah Data+</a>
+            <a href="#" target="_blank" class="btn"> Tambah Data+</a>
+            <!-- https://forms.gle/XiMxH1KS9md68AXr9 -->
         </footer>
     </div>
 
@@ -186,6 +187,8 @@
                     }).done(res => {
                         arrData = fetchAll(res.feed.entry)
                         arrData = arrData.reverse()
+
+                        $('.loader').hide()
 
                         if (byTag == "semua") {
                             
