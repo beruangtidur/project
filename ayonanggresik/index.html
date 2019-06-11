@@ -140,7 +140,7 @@
                 let result = [],
                     lim = limit
 
-                $('.loader').remove()
+                $('.loader').hide()
 
                 arrData = fetchAll(res.feed.entry)
                 arrData = arrData.reverse()
@@ -234,7 +234,8 @@
                 const query = $(this).serializeArray()[0].value.toLocaleLowerCase()
 
                 $(this)[0].reset()
-                $('content-wrapper').html('')
+                $('.content-wrapper').html('')
+                $('.more').remove()
                 $('.loader').show()
 
                 $.ajax({
@@ -243,7 +244,7 @@
                     let result = [],
                         lim = limit
 
-                    $('.loader').remove()
+                    $('.loader').hide()
 
                     arrData = fetchAll(res.feed.entry)
                     arrData = arrData.filter(matchByQuery)
@@ -309,7 +310,7 @@
                     let tag = ''
                     tags.forEach(el => {
                         tag += `
-                            <button class="btn ${el.toLowerCase()}" data-tag="el">${el}</button>
+                            <button class="btn ${el.toLowerCase()}" data-tag="el">${el.toLowerCase()}</button>
                         `
                     })
                     output += `
