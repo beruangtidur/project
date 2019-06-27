@@ -4,369 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ayo Nang Gresik</title>
-    
+    <title> </title>
+
+    <!-- STYLESHEET LOAD -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <style>
-        .komunitas{
-            background-color: crimson
+        .list-enter-active, .list-leave-active {
+        transition: all 1s;
         }
-        .makanan{
-            background-color: teal
+        .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+        opacity: 0;
+        transform: translateY(30px);
         }
-        .hits{
-            background-color: goldenrod
-        }
-        .cafe{
-            background-color: royalblue
-        }
-        .liburan{
-            background-color: seagreen
-        }
-
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="site-logo">
-                <img src="" alt="Logo Ayo Nang Gresik">
-            </div>
-            <div class="site-title">
-                <h1> Ayo Nang Gresik!</h1>
-            </div>
-        </header>
-        <main>
-            <div class="st">
-                <section class="search-box">
-                    <style>
-                        .search-box{
-                            border: 1px solid #444;
-                            border-radius: 2rem;
-                            height: 40px;
-                        }
-                        .search-box form{
-                            width: 100%;
-                            height: 100%;
-                        }
-                        .search-box form input{
-                            float: left !important;
-                            width: 90% !important;
-                            border: none !important;
-                            height: 100% !important;
-                        }
-                        .search-box button{
-                            float: right;
-                            width: 10%;
-                            height: 100%;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            border: none;
-                            background-color: transparent;
-                        }
-                        </style>
-                    <form action="" class="searchSomething">
-                        <input type="text" name="q" placeholder="nggoleko rek sak keselmu">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </section>
-                <section class="tag-lists">
-                    <a class="btn" href="javascript:void(0)">semua</a>
-                </section>
-            </div>
-
-            <div class="divider"></div>
-
-            <section class="content-wrapper"></section>
-            <div class="loader" style="margin-top: 20px;text-align: center">Memuat...</div>
-        </main>
-
-        <div class="divider"></div>
-        
-        <style>
-            footer{
-                display: flex;
-                flex-flow: wrap row;
-                justify-content: space-between
-            }
-            footer > span{
-                margin-bottom: 20px
-            }
-
-        </style>
-        <footer>
-            <span>digawe nang <u><b>gresik</b></u> nganggo ❤️ </span>
-            <a href="#" target="_blank" class="btn"> Tambah Data+</a>
-            <!-- https://forms.gle/XiMxH1KS9md68AXr9 -->
-        </footer>
+    <div id="app">
+        <div class="container">
+            <my-header 
+                :tags="tags" 
+                v-on:sort-by="sortBy">
+            </my-header>
+            <my-divider></my-divider>
+            <my-main 
+                :places="limitedData"
+                :len="placesCopy.length"
+                v-on:load-more="loadMore"
+                v-on:sort-by="sortBy"
+            >
+            </my-main>
+            <my-divider></my-divider>
+            <my-footer></my-footer>
+        </div>
     </div>
 
-    <script src="assets/js/jquery.js"></script>
-    <script>
-        const searchBox = $('.search-box')
-        let lastPos = 0,
-            recentPos = 0,
-            searchBoxPos = searchBox.position().top
-
-        let contentURL = "https://spreadsheets.google.com/feeds/list/1TIIKPpLHbLB7Tzz7_1sXDklLkam1N1_9IacF2OFCQEo/og1a58p/public/values?alt=json",
-            tagURL     = "https://spreadsheets.google.com/feeds/list/1TIIKPpLHbLB7Tzz7_1sXDklLkam1N1_9IacF2OFCQEo/ok7x8vc/public/values?alt=json"
-        let arrData = []
-            limit   = 2
-        // DECLARE ALL GLOBAL USED VARIABLE ========================
-
-        $(document).ready(function() {
-            $.ajax({
-                url: tagURL
-            }).done(res => {
-                let tags = [],
-                    output = ''
-
-                res.feed.entry.forEach(el =>{
-                    tags.push(el.gsx$tag.$t)
-                })
-
-                tags.forEach(el =>{
-                    output += `<a class="btn ${el}" href="javascript:void(0)">${el}</a>`
-                })
-                
-                $('.tag-lists').append(output)
-            })
-            // END LOAD TAG LISTS DATA
-
-            $.ajax({
-                url: contentURL
-            }).done(res =>{
-                let result = [],
-                    lim = limit
-
-                $('.loader').hide()
-
-                arrData = fetchAll(res.feed.entry)
-                arrData = arrData.reverse()
-
-                if (arrData.length <= lim){
-                     lim = arrData.length
-                }else{
-                    $('.content-wrapper').after(`<button class="btn more">lainnya</button>`) 
-                }
-
-                result = arrData.splice(0, lim)
-
-                $('.content-wrapper').html(templateContent(result))
-            })
-            // END FETCH ALL DATA =====================================
-
-            $(window).on('click',function(e){
-                lim = limit
-                result = []
-                
-                if ($(e.target).hasClass('more')) {
-                    
-                    if (arrData.length <= limit) {
-                        lim = arrData.length
-                        $(e.target).remove()
-                    }
-                    result = arrData.splice(0,lim)
-                    
-                    $('.content-wrapper').append(templateContent(result))
-                }
-                // END MORE BUTTON =================================
-                
-                if ($(e.target).parent().hasClass('tag-lists') || $(e.target).parent().hasClass('tags')) {
-                    e.preventDefault()
-                    const byTag = $(e.target).text().toLocaleLowerCase()
-                    
-                    $('.content-wrapper').html('')
-                    $('.more').remove()
-                    $('.loader').show()
-                    
-                    $.ajax({
-                        url: contentURL
-                    }).done(res => {
-                        arrData = fetchAll(res.feed.entry)
-                        arrData = arrData.reverse()
-
-                        $('.loader').hide()
-
-                        if (byTag == "semua") {
-                            
-                            if (arrData.length <= limit) {
-                                lim = arrData.length
-                            } else {
-                                if (!$('.content-wrapper').next().hasClass('more')) {
-                                    $('.content-wrapper').after(`<button class="btn more">lainnya</button>`)
-                                }
-                            }
-
-                        } else {
-                            arrData = arrData.filter(matchByTag)
-
-                            function matchByTag(item) {
-                                if (item.tags.toLocaleLowerCase().indexOf(byTag) > -1) {
-                                    return true
-                                }
-                                return false
-                            }
-
-                            if (arrData.length <= lim) {
-                                lim = arrData.length
-                            } else {
-                                if (!$('.content-wrapper').next().hasClass('more')) {
-                                    $('.content-wrapper').after(`<button class="btn more">lainnya</button>`)
-                                }
-                            }
-                            
-
-                        }
-
-                        result = arrData.splice(0,lim)
-                        $('.content-wrapper').html(templateContent(result))
-
-
-                    })
-                }
-                // END FILTER BY TAG======================================================================
-            })
-            // END WINDOW CLICK EVENT HANDLER
-
-            $('.searchSomething').submit(function(el){
-                el.preventDefault()
-
-                const query = $(this).serializeArray()[0].value.toLocaleLowerCase()
-
-                $(this)[0].reset()
-                $('.content-wrapper').html('')
-                $('.more').remove()
-                $('.loader').show()
-
-                $.ajax({
-                    url: contentURL
-                }).done(res => {
-                    let result = [],
-                        lim = limit
-
-                    $('.loader').hide()
-
-                    arrData = fetchAll(res.feed.entry)
-                    arrData = arrData.filter(matchByQuery)
-
-                    function matchByQuery(item) {
-                        if (item.nama.toLocaleLowerCase().indexOf(query) > -1 || item.deskripsi.toLocaleLowerCase().indexOf(query) > -1 ) {
-                            return true
-                        }
-                        return false
-                    }
-      
-                    if (arrData.length <= lim) {
-                        lim = arrData.length
-                    } else {
-                        $('.content-wrapper').after(`<button class="btn more">lainnya</button>`)
-                    }
-
-                    result = arrData.splice(0, lim)
-                    $('.content-wrapper').html(templateContent(result))
-
-                })
-            })
-            // END FILTER BY QUERY======================================================================
-            
-            $(window).on('scroll', window.fixedSearchBox) // FIXED SEARCH BOX
-        })
-        // END JQUERY DOCUMENT READY 
-
-
-
-    function fetchAll(res) {
-        let data = []
-        for (const index in res) {
-            if (res.hasOwnProperty(index)) {
-                const el = res[index]
-
-                data.push({
-                    "nama": el.gsx$nama.$t,
-                    "deskripsi": el.gsx$deskripsi.$t,
-                    "logo": el.gsx$logo.$t,
-                    "tags": el.gsx$tags.$t,
-                    "ig": el.gsx$instagram.$t,
-                    "fb": el.gsx$facebook.$t,
-                    "web": el.gsx$website.$t,
-                    "gmaps": el.gsx$gmaps.$t
-                })
-            }
-        }
-
-        return data
-    }
-
-    function templateContent(data) {
-        let output = ''
-
-        if(data == 0 || data == "" || data == null) {
-            output += `<div class="is404"> (>.<) </div>`
-        }else {
-            for (const index in data) {
-                if (data.hasOwnProperty(index)) {
-                    const el = data[index],
-                          tags = el.tags.split(', ')
-                    let tag = ''
-                    tags.forEach(el => {
-                        tag += `
-                            <button class="btn ${el.toLowerCase()}" data-tag="el">${el.toLowerCase()}</button>
-                        `
-                    })
-                    output += `
-                    <div class="content" >
-                        <h2 class="title">${ el.nama }</h2>
-                        <img src="${ el.logo }" alt="${ el.nama }  -logo" class="logo">
-                        <p class="desc">${ el.deskripsi }</p>
-                        <div class="social-media">
-                            ${ (el.fb !== "")? `<a href="${el.fb}" target='_blank'><i class='fa fa-facebook'></i></a>` : ''}
-                            ${ (el.ig !== "") ? `<a href="${el.Instagram}" target="_blank"><i class="fa fa-instagram"></i></a>` : ''}
-                            ${ (el.web !== "") ? `<a href="${el.web}" target="_blank"><i class="fa fa-globe"></i></a>` : ''}
-                            ${ (el.gmaps !== "") ? `<a href="${element.gmaps}" target="_blank"><i class="fa fa-map-marker"></i></a>` : ''}
-                        </div>
-                        <div class="tags">
-                            ${ tag }
-                        </div>
-                    </div>`
-                            
-                }
-            }
-        }
-        return output
-        
-    }
-
-    function fixedSearchBox() {
-        recentPos = $(window).scrollTop()
-
-        if (recentPos > searchBoxPos) {
-
-            searchBox.css('animation', '')
-            if (searchBox.hasClass('fixed') == false)
-                searchBox.addClass('fixed')
-
-            if (lastPos > recentPos) {
-                searchBox.css({
-                    'animation': 'slideDown .5s ease forwards'
-                })
-            } else {
-                searchBox.css({
-                    'animation': 'slideUp .5s ease forwards'
-                })
-            }
-        } else {
-            searchBox.css('animation', '')
-            searchBox.removeClass('fixed')
-
-        }
-
-        lastPos = recentPos
-    }
-
-       
-    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="assets/js/vue.min.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
