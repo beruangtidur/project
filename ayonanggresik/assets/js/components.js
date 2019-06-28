@@ -2,7 +2,7 @@ Vue.component('my-header', {
     props: ['tags'],
     template: `
     <header>
-        <a href="/">
+        <a href="">
             <div class="site-logo">
                 <img src="" alt="Logo Ayo Nang Gresik">
             </div>
@@ -113,12 +113,12 @@ Vue.component('my-item', {
         <div class="social-media">
             <a target='_blank' 
                 v-if="place.facebook"
-                :href="place.facebook">
+                :href="'https://facebook.com/' +place.facebook">
                 <i class='fa fa-facebook'></i>
             </a>
             <a target="_blank"
                 v-if="place.instagram"
-                :href="place.instagram">
+                :href="'https://instagram.com/' +place.instagram">
                 <i class="fa fa-instagram"></i>
             </a>
             <a target="_blank"
@@ -162,7 +162,7 @@ Vue.component('my-item', {
 Vue.component('my-footer', {
     template: `
     <footer>
-        <span>digawe nang <u><b>gresik</b></u> nganggo ❤️ </span>
+        <span>digawe nang <u><b>gresik</b></u> nganggo <i class="fa fa-heart"></i> </span>
         <a href="#" target="_blank" class="btn"> Tambah Data+</a>
         <!-- https://forms.gle/XiMxH1KS9md68AXr9 -->
     </footer>

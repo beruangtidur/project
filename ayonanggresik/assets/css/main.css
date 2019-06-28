@@ -248,7 +248,14 @@ body {
     display: flex;
     flex-flow: wrap row;
     justify-content: space-between; }
+@keyframes beat {
+  to {
+    transform: scale(1.2); } }
     .container footer > span {
       margin-bottom: 20px; }
+    .container footer .fa-heart {
+      animation: beat 0.5s infinite alternate;
+      transform-origin: center;
+      color: crimson; }
 
 /*# sourceMappingURL=main.css.map */
