@@ -84,11 +84,6 @@ Vue.component('my-main', {
 
 Vue.component('my-contents', {
     props: ['places'],
-    data: function() {
-        return {
-            i: 0
-        }
-    },
     template: `
     <div class="content-wrapper">
         <transition-group name="list" tag="div">
@@ -100,7 +95,7 @@ Vue.component('my-contents', {
             >
             </my-item>
         </transition-group>
-        <div v-if="places.length == 0" class="is-404">(>_<)</div>
+        <div v-if="places.length == 0" class="is-404">(•_•)</div>
     </div>
     `,
     methods: {

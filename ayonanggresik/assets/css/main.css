@@ -209,8 +209,9 @@ body {
       flex-flow: wrap row;
       justify-content: space-around; }
     .container main .content-wrapper .is-404 {
-      font-size: 7rem;
-      text-align: center; }
+      font-size: 6rem;
+      text-align: center;
+      color: #cfcfcf; }
     .container main .content-wrapper .content {
       flex: 0 0 100%;
       padding: 10px;
