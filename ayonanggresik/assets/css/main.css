@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap");
 ::selection {
   background-color: #444444;
   color: #fff; }
@@ -25,7 +26,7 @@ button,
 html,
 body {
   color: #444444;
-  font-family: "Roboto Mono";
+  font-family: "Roboto Mono", monospace;
   font-size: 90%; }
 
 @media (min-width: 768px) {
