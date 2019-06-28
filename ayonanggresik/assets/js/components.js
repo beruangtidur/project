@@ -30,7 +30,7 @@ Vue.component('my-search-box', {
     },
     template: `
     <section class="search-box">
-        <form action="" class="searchSomething" @submit.prevent="sortBy('query', query)" >
+        <form action="" class="searchSomething" @submit.prevent="sortBy('query', query.toLowerCase())" >
             <input type="text" placeholder="nggoleko rek sak keselmu" v-model="query">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
@@ -100,7 +100,7 @@ Vue.component('my-contents', {
             >
             </my-item>
         </transition-group>
-        <div v-if="places.length == 0" class="is404">(>_<)</div>
+        <div v-if="places.length == 0" class="is-404">(>_<)</div>
     </div>
     `,
     methods: {
