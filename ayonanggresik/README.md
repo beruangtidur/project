@@ -7,4 +7,4 @@
 3. add data
 4. load more data
 5. load partial data
-6. 
+6. ganti input url instagram/facebook => username
