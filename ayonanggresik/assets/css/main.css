@@ -207,7 +207,7 @@ body {
       display: flex;
       flex-flow: wrap row;
       justify-content: space-around; }
-    .container main .content-wrapper .is404 {
+    .container main .content-wrapper .is-404 {
       font-size: 7rem;
       text-align: center; }
     .container main .content-wrapper .content {
@@ -246,7 +246,7 @@ body {
     display: flex;
     flex-flow: wrap row;
     justify-content: space-between; }
-    .container footer footer > span {
+    .container footer > span {
       margin-bottom: 20px; }
 
 /*# sourceMappingURL=main.css.map */
