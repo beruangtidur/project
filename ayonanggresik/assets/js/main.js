@@ -3,30 +3,41 @@ const app = new Vue({
     data: {
         limit: 3,
         tags : [],
-        places : [],
-        placesCopy: [],
-        limitedData: []
+        items : [],
+        sortType: 'tag',
+        sortVal: 'semua',
+        isLoading: true,
+        isMore: false,
+        errorText: "",
+    },
+    computed: {
+        sortedItems: function() {
+            let _e = []
+
+            if (this.sortType == 'tag') {
+                if (this.sortVal == 'semua') {
+                    this.isMore = this.items.length > this.limit
+                    return this.items.slice(0, this.limit)
+                } else {
+                    _e = this.items.filter(item => { if (item.tags.toLowerCase().indexOf(this.sortVal) > -1) return true })
+                    this.isMore = _e.length > this.limit
+                }
+            } else if (this.sortType == 'query') {
+                _e = this.items.filter(el => { if (el.name.toLowerCase().indexOf(this.sortVal) > -1 || el.description.toLowerCase().indexOf(this.sortVal) > -1) return true })
+                this.isMore = _e.length > this.limit
+            }
+
+            return _e.slice(0, this.limit)
+        }
     },
     methods: {
         sortBy(type, value) {
-            arr = []
-
-            if (type == 'tag') {
-                if (value == 'semua') {
-                    arr = this.places.slice()
-                } else {
-                    arr = this.places.filter(place => { if (place.tags.toLowerCase().indexOf(value) > -1) return true })
-                }
-            } else if(type == 'query') {
-                arr = this.places.filter(el => { if (el.name.toLowerCase().indexOf(value) > -1 || el.description.toLowerCase().indexOf(value) > -1) return true })
-            }
-
-            this.placesCopy = arr
-            this.limitedData = [...this.placesCopy.splice(0, this.limit)]
-
+            this.sortType = type
+            this.sortVal = value
+            this.limit = 3
         },
         loadMore(){
-            this.limitedData = [...this.limitedData, ...this.placesCopy.splice(0, this.limit)]
+            this.limit += 3
         }
     },
     created: function(){
@@ -66,11 +77,13 @@ const app = new Vue({
             }
         })
         .then(res => {
-            this.places = res.data.Data.reverse()
-            this.placesCopy = this.places.slice()
-            this.limitedData = [...this.placesCopy.splice(0, this.limit)]
+            this.items = res.data.Data.reverse()
+            this.isLoading = false
         })
-
+        .catch(function(err) {
+            this.errorText = "Gagal Load Data, Coba Reload ulang"
+        })
+        //<------------ GET ALL MAIN DATA ------------------->
         axios({
             method: 'get',
             url: _url,
@@ -78,9 +91,11 @@ const app = new Vue({
                 sheet: _sheet2
             }
         })
-            .then(res => {
-                this.tags = res.data.Tags
-            })
+        .then(res => {
+            this.tags = res.data.Tags
+            this.isLoading = false
+        })
+        //<------------ GET ALL TAGS DATA ------------------->
     }
 })
 

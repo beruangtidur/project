@@ -22,14 +22,13 @@
 <body>
     <div id="app">
         <div class="container">
-            <my-header 
-                :tags="tags" 
-                v-on:sort-by="sortBy">
-            </my-header>
+            <my-header :tags="tags" v-on:sort-by="sortBy"></my-header>
             <my-divider></my-divider>
             <my-main 
-                :places="limitedData"
-                :len="placesCopy.length"
+                :items="sortedItems"
+                :is-more="isMore"
+                :is-loading="isLoading"
+                :error-text="errorText"
                 v-on:load-more="loadMore"
                 v-on:sort-by="sortBy"
             >

@@ -6,6 +6,7 @@
 * {
   margin: 0;
   padding: 0;
+  line-height: 1;
   box-sizing: border-box; }
 
 a {
@@ -48,6 +49,18 @@ body {
     width: auto !important;
     margin: 0 auto !important;
     padding: 10px 20px !important; } }
+@-webkit-keyframes dots {
+  to {
+    width: 2rem; } }
+@-moz-keyframes dots {
+  to {
+    width: 2rem; } }
+@-ms-keyframes dots {
+  to {
+    width: 2rem; } }
+@keyframes dots {
+  to {
+    width: 2rem; } }
 @-webkit-keyframes slideDown {
   0% {
     transform: translateX(-50%) translateY(-100%); }
@@ -113,6 +126,15 @@ body {
 .btn:hover {
   transform: translate(3px, 3px);
   box-shadow: none; }
+
+.loader {
+  text-align: center; }
+  .loader:after {
+    content: "...";
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+    animation: dots steps(4, end) 2s infinite; }
 
 .komunitas {
   background-color: crimson; }
@@ -194,8 +216,7 @@ body {
           background-color: transparent; }
     .container header .tag-lists {
       display: flex;
-      flex-flow: wrap row; }
-    .container header .tag-lists {
+      flex-flow: wrap row;
       justify-content: center;
       flex: 0 0 100%; }
       .container header .tag-lists a {
