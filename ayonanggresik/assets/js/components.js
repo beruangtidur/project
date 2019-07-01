@@ -52,7 +52,7 @@ Vue.component('my-main', {
                 >
                 </my-item>
             </transition-group>
-            <div v-if="items.length == 0 && isLoading == false && errorText != ''" class="is-404">(•_•)</div>
+            <div v-if="items.length == 0 && isLoading == false && errorText = ''" class="is-404">(•_•)</div>
         </div>
         
         <button class="btn more" v-if="isMore" @click.prevent="$emit('load-more')"> load more </button>
