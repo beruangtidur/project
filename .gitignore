@@ -1,4 +1,8 @@
 ayonanggresik/.sass-cache/
 ayonanggresik/assets/css/main.css.map
 ayonanggresik/assets/sass/
+ayonanggresik/node_modules
+ayonanggresik/webpack.config.js
+ayonanggresik/package.json
+ayonanggresik/package-lock.json
 .sass-cache
