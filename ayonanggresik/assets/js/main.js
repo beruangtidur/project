@@ -1,5 +1,16 @@
+const axios = require('axios')
+import Vue from 'vue'
+
+import * as components from "./components/index.js"
+
 const app = new Vue({
     el: '#app',
+    components: {
+        myHeader: components.myHeader,
+        myMain: components.myMain,
+        myFooter: components.myFooter,
+        myDivider: components.myDivider
+    },
     data: {
         limit: 3,
         tags : [],
@@ -41,10 +52,10 @@ const app = new Vue({
         }
     },
     created: function(){
-        lastPos = 0
+        let lastPos = 0
         window.addEventListener('scroll', function () {
-            recentPos = window.scrollY
-            searchBox = document.querySelector('.search-box')
+            let recentPos = window.scrollY,
+                searchBox = document.querySelector('.search-box')
 
             if (recentPos > 300) {
                 searchBox.style.animation = ''
@@ -65,9 +76,9 @@ const app = new Vue({
 
     },
     mounted: function(){
-        _url = 'https://script.google.com/macros/s/AKfycbxQjQ-_q9iEnshmKyAYiBNHd7BjZspsOJEbt6QsDbrpmjrouu4/exec'
-        _sheet1 = 'Data'
-        _sheet2 = 'Tags'
+        let _url = 'https://script.google.com/macros/s/AKfycbxQjQ-_q9iEnshmKyAYiBNHd7BjZspsOJEbt6QsDbrpmjrouu4/exec',
+            _sheet1 = 'Data',
+            _sheet2 = 'Tags'
   
         axios({
             method: 'get',
